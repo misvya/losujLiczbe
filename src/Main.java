@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 
 public class Main {
@@ -17,8 +18,19 @@ public class Main {
         ArrayList<Integer> losowe = wylosujLiczbyDoListy(10);
         wypisz(losowe);
 
-    }
+        HashSet<Integer> wylosowanyZbior = wylosujLiczbyDoZbioru(15);
+        wypisz(wylosowanyZbior);
 
+    }
+    private static HashSet<Integer> wylosujLiczbyDoZbioru(int ileLiczb){
+        HashSet<Integer> zbiorLosowych = new HashSet<>();
+        //elementy w zbiorze sa unikatowe nieindeksowane
+        Random random = new Random();
+        while (zbiorLosowych.size()<ileLiczb){
+            zbiorLosowych.add(random.nextInt(20)+1);
+        }
+        return zbiorLosowych;
+    }
     private static ArrayList<Integer> wylosujLiczbyDoListy(int ileLiczb){
         //kolekcje -> Listy, Zbiory, Map
         //List -> ArrayList
@@ -30,7 +42,11 @@ public class Main {
         Random random = new Random();
         ArrayList<Integer> listaLiczbLosowych = new ArrayList<>();
         for (int i = 0; i < ileLiczb; i++) {
-            listaLiczbLosowych.add(random.nextInt(20)+1);
+            int liczba = random.nextInt(20)+1;
+            while (listaLiczbLosowych.contains(liczba)){
+                liczba = random.nextInt(20)+1;
+            }
+            listaLiczbLosowych.add(liczba);
         }
         return listaLiczbLosowych;
     }
@@ -40,6 +56,14 @@ public class Main {
         System.out.println("Lista: ");
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(lista.get(i) + ", ");
+        }
+    }
+
+    private static void wypisz(HashSet<Integer> zbior){
+        System.out.println();
+        System.out.println("Wypisywanie zbioru");
+        for (int elementZbioru : zbior) {
+            System.out.println(elementZbioru + ", ");
         }
     }
 
