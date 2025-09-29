@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +22,21 @@ public class Main {
         HashSet<Integer> wylosowanyZbior = wylosujLiczbyDoZbioru(15);
         wypisz(wylosowanyZbior);
 
+        ArrayList<Integer> wczytaneLiczby = wczytajZKlawiatury(5);
+        System.out.println(wczytaneLiczby);
+
     }
+
+    private static ArrayList<Integer> wczytajZKlawiatury(int ileLiczb){
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> wczytaneLivzby = new ArrayList<>();
+        for (int i = 0; i < ileLiczb; i++) {
+            System.out.println("Podaj liczbę ");
+            wczytaneLivzby.add(scanner.nextInt());
+        }
+        return wczytaneLivzby;
+    }
+
     private static HashSet<Integer> wylosujLiczbyDoZbioru(int ileLiczb){
         HashSet<Integer> zbiorLosowych = new HashSet<>();
         //elementy w zbiorze sa unikatowe nieindeksowane
